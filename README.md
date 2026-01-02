@@ -17,6 +17,7 @@ This project works on a real-world, highly imbalanced dataset and applies data p
 - Environment: Jupyter Notebook  
 
 ## Project Structure
+
 Credit-Card-Fraud-Detection/
 ├── Data/ (ignored in GitHub)
 │   └── creditcard.csv
