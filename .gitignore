@@ -1,0 +1,15 @@
+# Ignore dataset folder
+data/
+
+# Ignore CSV files
+*.csv
+
+# Ignore zip files
+*.zip
+
+# Ignore notebook checkpoints
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
