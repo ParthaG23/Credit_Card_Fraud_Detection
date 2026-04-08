@@ -85,7 +85,7 @@ export default function Scanner() {
     try {
       const res = await apiService.scanTransaction(features);
       const responseTime = Math.round(performance.now() - t0);
-      const sr = { ...res, responseTime };
+      const sr = { ...res, responseTime, transactionTime: features.transaction_time || new Date().toISOString() };
       setResult(sr); addScan(sr);
     } catch (e) { setError(e.message); }
     finally { setLoading(false); }
@@ -202,7 +202,9 @@ export default function Scanner() {
                           border: '1px solid rgba(51,65,85,0.2)',
                         }}>
                           <span style={{ fontSize: '9px', color: 'var(--color-text-muted)', fontFamily: 'var(--font-mono)' }}>{k}</span>
-                          <p style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: 'var(--color-text-primary)', marginTop: '2px' }}>{Number(v).toFixed(4)}</p>
+                          <p style={{ fontSize: '11px', fontFamily: 'var(--font-mono)', color: 'var(--color-text-primary)', marginTop: '2px' }}>
+                            {typeof v === 'number' ? Number(v).toFixed(2) : (v || 'N/A')}
+                          </p>
                         </div>
                       ))}
                     </div>

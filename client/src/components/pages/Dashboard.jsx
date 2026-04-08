@@ -198,7 +198,7 @@ export default function Dashboard() {
                       onMouseLeave={e => e.currentTarget.style.background = 'none'}
                     >
                       <td style={{ padding: '10px 12px', fontSize: '11px', fontFamily: 'var(--font-mono)', color: 'var(--color-text-secondary)' }}>#{String(scan.id).slice(-6)}</td>
-                      <td style={{ padding: '10px 12px', fontSize: '11px', color: 'var(--color-text-secondary)' }}>{new Date(scan.timestamp).toLocaleTimeString()}</td>
+                      <td style={{ padding: '10px 12px', fontSize: '11px', color: 'var(--color-text-secondary)' }}>{scan.transactionTime || new Date(scan.timestamp).toLocaleTimeString()}</td>
                       <td style={{ padding: '10px 12px' }}>
                         <span style={{
                           display: 'inline-flex', alignItems: 'center', fontSize: '11px', fontWeight: 600,

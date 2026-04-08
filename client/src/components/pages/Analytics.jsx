@@ -315,7 +315,7 @@ export default function Analytics() {
                       onMouseLeave={e => e.currentTarget.style.background = 'none'}
                     >
                       <td style={{ padding: '8px 12px', fontSize: '11px', color: 'var(--color-text-muted)' }}>{scanHistory.length - i}</td>
-                      <td style={{ padding: '8px 12px', fontSize: '11px', color: 'var(--color-text-secondary)' }}>{new Date(s.timestamp).toLocaleTimeString()}</td>
+                      <td style={{ padding: '8px 12px', fontSize: '11px', color: 'var(--color-text-secondary)' }}>{s.transactionTime || new Date(s.timestamp).toLocaleTimeString()}</td>
                       <td style={{ padding: '8px 12px' }}>
                         <span style={{
                           fontSize: '11px', fontWeight: 600, padding: '2px 8px', borderRadius: '999px',
