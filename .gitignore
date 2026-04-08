@@ -16,10 +16,8 @@ Thumbs.db
 # Notebooks
 .ipynb_checkpoints/
 
-# Data & Models
-data/*.csv
-data/*.zip
-model/*.pkl
+# models
+!model/*.pkl
 
 # Frontend
 client/node_modules/
