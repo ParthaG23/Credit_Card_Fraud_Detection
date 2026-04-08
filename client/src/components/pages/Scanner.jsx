@@ -176,7 +176,7 @@ export default function Scanner() {
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
                     <Info style={{ width: '16px', height: '16px', color: 'var(--color-accent-cyan)', flexShrink: 0 }} />
-                    <span style={{ fontSize: '14px', fontWeight: 600, color: 'var(--color-text-primary)' }}>Features (V1–V28)</span>
+                    <span style={{ fontSize: '14px', fontWeight: 600, color: 'var(--color-text-primary)' }}>Transaction Features</span>
                     {trueClass !== null && (
                       <span style={{
                         fontSize: '9px', fontWeight: 700, textTransform: 'uppercase',

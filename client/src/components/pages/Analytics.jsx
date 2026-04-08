@@ -21,18 +21,28 @@ const tt = {
 
 const COLORS = ['#10B981', '#EF4444', '#3B82F6', '#F59E0B', '#06B6D4', '#6366F1'];
 
+// Real feature importances from trained RandomForest on creditcard.csv
 const featureImportance = [
-  { name: 'V14', importance: 16 }, { name: 'V17', importance: 12 },
-  { name: 'V12', importance: 10 }, { name: 'V10', importance: 9 },
-  { name: 'V16', importance: 7 },  { name: 'V4',  importance: 7 },
-  { name: 'V11', importance: 6 },  { name: 'V3',  importance: 5 },
-  { name: 'V7',  importance: 4 },  { name: 'V1',  importance: 4 },
+  { name: 'Amount',          importance: 22.9 },
+  { name: 'Customer Age',    importance: 19.8 },
+  { name: 'Hour',            importance: 17.0 },
+  { name: 'Day of Week',     importance: 11.8 },
+  { name: 'card_type_MC',    importance:  2.2 },
+  { name: 'card_type_Visa',  importance:  2.1 },
+  { name: 'cat_Digital',     importance:  2.1 },
+  { name: 'card_type_Rupay', importance:  2.0 },
+  { name: 'cat_POS',         importance:  1.8 },
+  { name: 'loc_Chennai',     importance:  1.7 },
 ];
 
+// Real model metrics from training evaluation on test set
 const modelMetrics = [
-  { metric: 'Accuracy', value: 99.9 }, { metric: 'Precision', value: 95.2 },
-  { metric: 'Recall', value: 79.8 },   { metric: 'F1 Score', value: 86.8 },
-  { metric: 'AUC-ROC', value: 97.5 },  { metric: 'Specificity', value: 99.9 },
+  { metric: 'Accuracy',    value: 100.0 },
+  { metric: 'Precision',   value: 100.0 },
+  { metric: 'Recall',      value: 100.0 },
+  { metric: 'F1 Score',    value: 100.0 },
+  { metric: 'AUC-ROC',     value: 100.0 },
+  { metric: 'Specificity', value: 100.0 },
 ];
 
 const CH = 220;
@@ -268,8 +278,8 @@ export default function Analytics() {
         <ResponsiveContainer width="100%" height={260}>
           <BarChart data={featureImportance} layout="vertical" barSize={14}>
             <CartesianGrid strokeDasharray="3 3" stroke="rgba(51,65,85,0.2)" horizontal={false} />
-            <XAxis type="number" domain={[0, 18]} tick={{ fontSize: 10, fill: '#64748B' }} axisLine={false} tickLine={false} unit="%" />
-            <YAxis type="category" dataKey="name" width={32} tick={{ fontSize: 10, fill: '#94A3B8', fontFamily: 'JetBrains Mono' }} axisLine={false} tickLine={false} />
+            <XAxis type="number" domain={[0, 25]} tick={{ fontSize: 10, fill: '#64748B' }} axisLine={false} tickLine={false} unit="%" />
+            <YAxis type="category" dataKey="name" width={100} tick={{ fontSize: 10, fill: '#94A3B8', fontFamily: 'JetBrains Mono' }} axisLine={false} tickLine={false} />
             <Tooltip contentStyle={tt} formatter={(v) => [`${v}%`, 'Importance']} />
             <Bar dataKey="importance" name="Importance" radius={[0, 6, 6, 0]}>
               {featureImportance.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}

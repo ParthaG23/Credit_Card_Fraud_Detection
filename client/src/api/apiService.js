@@ -40,7 +40,7 @@ const apiService = {
 
   /**
    * Send transaction data to the model for prediction
-   * @param {Object} transactionData - V1-V28 feature values
+   * @param {Object} transactionData - Raw transaction feature values
    */
   scanTransaction: async (transactionData) => {
     try {

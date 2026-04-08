@@ -251,8 +251,8 @@ export default function Dashboard() {
         <div className="model-grid">
           {[
             { l: 'Algorithm',  v: 'Random Forest' },
-            { l: 'Features',   v: '28 (V1–V28)' },
-            { l: 'Estimators', v: '50 Trees' },
+            { l: 'Features',   v: '22 Features' },
+            { l: 'Estimators', v: '200 Trees' },
             { l: 'Status',     v: backendStatus.online ? 'Deployed' : 'Offline' },
           ].map(({ l, v }) => (
             <div key={l} style={{
