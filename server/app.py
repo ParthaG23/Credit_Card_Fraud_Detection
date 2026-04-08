@@ -72,7 +72,6 @@ try:
     df_legit = df_data[df_data['Class'] == 0]
     print("Data loaded for sampling.")
 except Exception as e:
-    global load_error
     load_error = e
     df_data = None
     df_fraud = None
