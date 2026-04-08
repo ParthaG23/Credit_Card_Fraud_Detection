@@ -4,6 +4,7 @@ import joblib
 import pandas as pd
 import random
 import os
+import requests
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 app = Flask(__name__)
@@ -19,10 +20,51 @@ except Exception as e:
     model = None
     print(f"Warning: Model not found or error loading model: {str(e)}")
 
+# Helper to download large files from Google Drive
+def download_file_from_google_drive(url, destination):
+    def get_confirm_token(response):
+        for key, value in response.cookies.items():
+            if key.startswith('download_warning'):
+                return value
+        return None
+
+    def save_response_content(response, destination):
+        CHUNK_SIZE = 32768
+        with open(destination, "wb") as f:
+            for chunk in response.iter_lines(chunk_size=CHUNK_SIZE):
+                if chunk: f.write(chunk)
+
+    if "drive.google.com" in url or "docs.google.com" in url:
+        # Extract ID
+        if "id=" in url:
+            file_id = url.split("id=")[1]
+        else:
+            file_id = url.split("/")[-2]
+            
+        URL = "https://docs.google.com/uc?export=download"
+        session = requests.Session()
+        response = session.get(URL, params={'id': file_id}, stream=True)
+        token = get_confirm_token(response)
+
+        if token:
+            params = {'id': file_id, 'confirm': token}
+            response = session.get(URL, params=params, stream=True)
+        
+        save_response_content(response, destination)
+        return destination
+    return url
+
 # Load dataset for random sampling
 try:
     default_data_path = os.path.join(BASE_DIR, "..", "data", "creditcard.csv")
     data_path = os.getenv("DATA_PATH", default_data_path)
+    
+    # If the path is a URL, download it to a temp file first
+    if data_path.startswith("http"):
+        print(f"Downloading data from remote source: {data_path}")
+        local_path = os.path.join(BASE_DIR, "temp_data.csv")
+        data_path = download_file_from_google_drive(data_path, local_path)
+
     df_data = pd.read_csv(data_path)
     df_data = df_data.drop(columns=['Time', 'Amount'])
     df_fraud = df_data[df_data['Class'] == 1]
