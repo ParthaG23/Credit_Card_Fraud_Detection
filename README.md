@@ -1,76 +1,76 @@
-# Credit Card Fraud Detection System
+# NexusGuard - Credit Card Fraud Detection System
 
 ## Project Overview
-The Credit Card Fraud Detection System is a machine learning–based project developed to identify fraudulent credit card transactions. The system analyzes transaction patterns and classifies them as legitimate or fraudulent, helping reduce financial losses and improve transaction security.
+NexusGuard is a full-stack, machine learning-powered platform developed to identify fraudulent credit card transactions. The system analyzes transaction patterns via a Random Forest model and visualizes results through a premium, responsive React dashboard.
 
-This project works on a real-world, highly imbalanced dataset and applies data preprocessing, feature scaling, and supervised learning techniques to build an effective fraud detection model.
+## Project Structure (Monorepo)
 
-## Objectives
-- Detect fraudulent credit card transactions accurately  
-- Handle highly imbalanced datasets  
-- Apply machine learning algorithms for binary classification  
-- Evaluate model performance using appropriate metrics  
+```
+Credit_Card_Fraud_Detection/
+├── client/           # React + Vite frontend dashboard
+├── server/           # Flask API backend
+├── model/            # ML model and training scripts
+├── notebooks/        # Jupyter research notebooks
+├── data/             # Dataset directory (ignored in git)
+└── docs/             # Technical documentation
+```
 
-## Technologies Used
-- Programming Language: Python  
-- Libraries: Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn  
-- Environment: Jupyter Notebook  
+## Setup Instructions
 
-## Project Structure
+### 1. Backend Setup
 
-Credit-Card-Fraud-Detection/
-├── Data/ (ignored in GitHub)
-│   └── creditcard.csv
-├── Notebook/
-│   └── CreditCardFraudDetection.ipynb
-├── README.md
-└── .gitignore
+1. **Navigate to the server directory:**
+   ```bash
+   cd server
+   ```
+2. **Create a virtual environment & install dependencies:**
+   ```bash
+   python -m venv .venv
+   # Windows: .venv\Scripts\activate
+   # Mac/Linux: source .venv/bin/activate
+   pip install -r requirements.txt
+   ```
+3. **Run the Flask API:**
+   ```bash
+   python app.py
+   ```
+   *The server runs on http://localhost:5000*
 
-## Dataset Information
-- Source: Kaggle – Credit Card Fraud Detection Dataset  
-- Transactions: European cardholders  
-- Features: 30 numerical features (V1–V28, Amount, Time)  
-- Target Variable:
-  - 0 → Legitimate transaction  
-  - 1 → Fraudulent transaction  
+### 2. Frontend Setup
 
-Due to GitHub file size limitations, the dataset is not included in this repository.
+1. **Navigate to the client directory (open a new terminal):**
+   ```bash
+   cd client
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+   *The frontend runs on http://localhost:5173*
 
-Dataset Link:
-https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
+### 3. Model Training (Optional)
 
-After downloading, place the dataset inside the Data/ folder.
+1. **Download the dataset:**
+   - Source: [Kaggle – Credit Card Fraud Detection](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
+   - Place `creditcard.csv` in the `data/` folder.
+2. **Navigate to the model directory:**
+   ```bash
+   cd model
+   ```
+3. **Install ML dependencies & Run training script:**
+   ```bash
+   pip install -r requirements.txt
+   python train_model.py
+   ```
+   *This will output a new `model.pkl` in the `model/` folder.*
 
-##  Methodology
-1. Data loading and exploration  
-2. Data preprocessing and feature scaling  
-3. Handling class imbalance  
-4. Model training using supervised learning  
-5. Model evaluation using accuracy, precision, recall, F1-score, and confusion matrix  
-
-##  Results
-- Successfully identified fraudulent transactions  
-- Achieved reliable performance on an imbalanced dataset  
-- Demonstrated effectiveness of machine learning for fraud detection  
-
-##  How to Run the Project
-1. Clone the repository:
-   git clone https://github.com/ParthaG23/Credit-Card-Fraud-Detection.git
-2. Install required libraries:
-   pip install pandas numpy scikit-learn matplotlib seaborn
-3. Download the dataset and place it in:
-   Data/creditcard.csv
-4. Open and run:
-   Notebook/CreditCardFraudDetection.ipynb
-
-## Future Enhancements
-- Implement advanced models like Random Forest and XGBoost  
-- Apply SMOTE for better handling of class imbalance  
-- Deploy the model using Flask or FastAPI  
-- Enable real-time fraud prediction  
+## Documentation
+- [Backend API Docs](docs/API.md)
 
 ## Author
 Partha Gayen  
-GitHub: https://github.com/ParthaG23  
-
-
+GitHub: https://github.com/ParthaG23

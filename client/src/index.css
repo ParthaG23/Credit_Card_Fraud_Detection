@@ -1,0 +1,397 @@
+@import "tailwindcss";
+
+/* ── Design System Tokens ── */
+@theme {
+  --color-bg-dark: #030712;
+  --color-bg-surface: #0F172A;
+  --color-bg-card: rgba(15, 23, 42, 0.6);
+  --color-bg-hover: rgba(30, 41, 59, 0.5);
+  --color-border-subtle: rgba(51, 65, 85, 0.5);
+  --color-border-glow: rgba(59, 130, 246, 0.3);
+  --color-accent-blue: #3B82F6;
+  --color-accent-indigo: #6366F1;
+  --color-accent-emerald: #10B981;
+  --color-accent-red: #EF4444;
+  --color-accent-amber: #F59E0B;
+  --color-accent-cyan: #06B6D4;
+  --color-text-primary: #F1F5F9;
+  --color-text-secondary: #94A3B8;
+  --color-text-muted: #64748B;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* ── Layout Tokens ── */
+:root {
+  --sidebar-w: 260px;
+  --mobile-nav-h: 72px;
+}
+
+/* ── Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ── App Layout ── */
+.app-main {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  /* Mobile: full width, bottom padding for nav */
+  padding-bottom: calc(var(--mobile-nav-h) + 16px);
+}
+
+@media (min-width: 1024px) {
+  .app-main {
+    margin-left: var(--sidebar-w);
+    padding-bottom: 0;
+  }
+}
+
+.app-content-wrapper {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px 16px;
+}
+
+@media (min-width: 640px) {
+  .app-content-wrapper {
+    padding: 24px 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-content-wrapper {
+    padding: 32px 32px;
+  }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(100,116,139,0.25); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(100,116,139,0.45); }
+
+/* ── Glass Card ── */
+.glass-card {
+  background: linear-gradient(145deg, rgba(15,23,42,0.85), rgba(15,23,42,0.45));
+  border: 1px solid rgba(51,65,85,0.35);
+  border-radius: 16px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card:hover {
+  border-color: rgba(59,130,246,0.2);
+  box-shadow: 0 0 40px rgba(59,130,246,0.04);
+}
+
+/* ── Page Header ── */
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 640px) {
+  .page-header {
+    align-items: center;
+  }
+}
+
+/* ── Stat Grid ── */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+@media (min-width: 768px) {
+  .stat-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+}
+
+/* ── Charts Grid ── */
+.charts-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 1024px) {
+  .charts-row {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+
+/* ── Two Column Layout (Scanner) ── */
+.scanner-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 1024px) {
+  .scanner-layout {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+
+/* ── Analytics Grids ── */
+.analytics-2col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .analytics-2col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.analytics-3col {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .analytics-3col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .analytics-3col {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.analytics-3col-radar {
+  /* On sm (2-col), span full width. On lg (3-col), span 1 */
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .analytics-3col-radar {
+    grid-column: span 2;
+  }
+}
+
+/* ── Summary Grid (Analytics) ── */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .summary-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ── Model Info Grid ── */
+.model-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .model-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ── Feature Grid ── */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+
+@media (min-width: 480px) {
+  .feature-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+}
+
+@media (min-width: 640px) {
+  .feature-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ── Sample Buttons Grid ── */
+.sample-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+/* ── Result Stats Grid ── */
+.result-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+/* ── Animated Background ── */
+.animated-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.animated-bg::before {
+  content: '';
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(59,130,246,0.07), transparent 70%);
+  top: -200px; right: -200px;
+  animation: float-orb 20s ease-in-out infinite;
+}
+.animated-bg::after {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(99,102,241,0.05), transparent 70%);
+  bottom: -150px; left: -150px;
+  animation: float-orb 25s ease-in-out infinite reverse;
+}
+@keyframes float-orb {
+  0%,100% { transform: translate(0,0) scale(1); }
+  25%     { transform: translate(50px,-30px) scale(1.1); }
+  50%     { transform: translate(-20px,50px) scale(0.95); }
+  75%     { transform: translate(30px,20px) scale(1.05); }
+}
+
+/* ── Spinner ── */
+.spinner {
+  width: 40px; height: 40px;
+  border: 3px solid rgba(59,130,246,0.15);
+  border-top: 3px solid var(--color-accent-blue);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Status dot ── */
+.status-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.status-dot.online {
+  background-color: var(--color-accent-emerald);
+  box-shadow: 0 0 8px rgba(16,185,129,0.5);
+  animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot {
+  0%,100% { opacity: 1; }
+  50%     { opacity: 0.5; }
+}
+
+/* ── Fade-in-up ── */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in-up { animation: fade-in-up 0.6s cubic-bezier(0.16,1,0.3,1) forwards; }
+
+/* ── Recharts overrides ── */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line { stroke: rgba(51,65,85,0.3) !important; }
+.recharts-text { fill: #94A3B8 !important; font-size: 11px !important; }
+.recharts-tooltip-wrapper { outline: none !important; }
+
+/* ── Mobile safe area ── */
+.safe-area-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+/* ── Hide scrollbar ── */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Table container ── */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-scroll table {
+  min-width: 480px;
+}
+
+/* ── Button base reset ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(to right, var(--color-accent-blue), var(--color-accent-indigo));
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 8px 25px rgba(59,130,246,0.25);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Mobile Nav Visibility ── */
+.mobile-nav {
+  display: flex !important;
+  flex-direction: column;
+}
+
+@media (min-width: 1024px) {
+  .mobile-nav {
+    display: none !important;
+  }
+}
+
+/* ── Hidden on mobile ── */
+.hidden-mobile {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .hidden-mobile {
+    display: inline;
+  }
+}
+
+/* ── Desktop Sidebar ── */
+@media (min-width: 1024px) {
+  .desktop-sidebar {
+    display: flex !important;
+  }
+}
