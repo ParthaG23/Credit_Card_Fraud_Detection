@@ -57,7 +57,7 @@ def download_file_from_google_drive(url, destination):
 
 # Load dataset for random sampling
 try:
-    default_data_path = os.path.join(BASE_DIR, "..", "data", "creditcard.csv")
+    default_data_path = os.path.join(BASE_DIR, "..", "data", "creditcard_mini.csv")
     data_path = os.getenv("DATA_PATH", default_data_path)
     
     # If the path is a URL, download it to a temp file first
