@@ -136,7 +136,10 @@ def predict():
         })
         
     except Exception as e:
-        return jsonify({"error": str(e)}), 400
+        return jsonify({
+            "error": "Prediction failed internally.",
+            "details": str(e)
+        }), 500
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
