@@ -9,6 +9,7 @@ import requests
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 app = Flask(__name__)
 CORS(app)
+load_error = None
 
 # Load the trained model
 try:
@@ -71,6 +72,8 @@ try:
     df_legit = df_data[df_data['Class'] == 0]
     print("Data loaded for sampling.")
 except Exception as e:
+    global load_error
+    load_error = e
     df_data = None
     df_fraud = None
     df_legit = None
@@ -89,7 +92,11 @@ def index():
 def sample_transaction():
     trans_type = request.args.get("type", "legit")
     if df_data is None:
-        return jsonify({"error": "Data not available for sampling."}), 500
+        # Get the error from the global scope if we stored it
+        return jsonify({
+            "error": "Data not available for sampling.",
+            "details": str(globals().get('load_error', 'Unknown error'))
+        }), 500
         
     try:
         if trans_type == "fraud":
