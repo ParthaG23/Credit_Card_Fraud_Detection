@@ -1,11 +1,12 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useApp } from '../../context/AppContext';
-import { LayoutDashboard, ScanSearch, BarChart3 } from 'lucide-react';
+import { LayoutDashboard, ScanSearch, BarChart3, Shield } from 'lucide-react';
 
 const navItems = [
-  { path: '/',          label: 'Dashboard', icon: LayoutDashboard },
-  { path: '/scanner',   label: 'Scanner',   icon: ScanSearch },
-  { path: '/analytics', label: 'Analytics', icon: BarChart3 },
+  { path: '/',           label: 'Dash',     icon: LayoutDashboard },
+  { path: '/scanner',    label: 'Scan',     icon: ScanSearch },
+  { path: '/batch-scan', label: 'Batch',    icon: Shield },
+  { path: '/analytics',  label: 'Analytics', icon: BarChart3 },
 ];
 
 export default function MobileNav() {

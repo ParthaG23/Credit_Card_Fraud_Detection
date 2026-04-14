@@ -3,9 +3,10 @@ import { useApp } from '../../context/AppContext';
 import { LayoutDashboard, ScanSearch, BarChart3, Shield, Wifi, WifiOff } from 'lucide-react';
 
 const navItems = [
-  { path: '/',          label: 'Dashboard', icon: LayoutDashboard },
-  { path: '/scanner',   label: 'Scanner',   icon: ScanSearch },
-  { path: '/analytics', label: 'Analytics', icon: BarChart3 },
+  { path: '/',           label: 'Dashboard',  icon: LayoutDashboard },
+  { path: '/scanner',    label: 'Scanner',    icon: ScanSearch },
+  { path: '/batch-scan', label: 'Batch Scan', icon: Shield },
+  { path: '/analytics',  label: 'Analytics',  icon: BarChart3 },
 ];
 
 export default function Sidebar() {

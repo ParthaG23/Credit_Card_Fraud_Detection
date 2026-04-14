@@ -5,6 +5,7 @@ import MobileNav from './components/layout/MobileNav';
 import Dashboard from './components/pages/Dashboard';
 import Scanner from './components/pages/Scanner';
 import Analytics from './components/pages/Analytics';
+import BatchScanner from './components/pages/BatchScanner';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/scanner" element={<Scanner />} />
                 <Route path="/analytics" element={<Analytics />} />
+                <Route path="/batch-scan" element={<BatchScanner />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </div>
